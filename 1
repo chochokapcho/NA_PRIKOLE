@@ -1,0 +1,85 @@
+import math, time
+from selenium import webdriver
+
+def calc(x):
+    return str(math.log(abs(12*math.sin(int(x)))))
+
+link = "http://suninjuly.github.io/math.html"
+browser = webdriver.Chrome()
+browser.get(link)
+
+x_element = browser.find_element("id","input_value")
+x = x_element.text
+y = calc(x)
+
+element1 = browser.find_element("id","answer")
+element1.send_keys(y)
+
+option1 = browser.find_element("id","robotCheckbox")
+option1.click()
+option2 = browser.find_element("id","robotsRule")
+option2.click()
+option3 = browser.find_element("name","btn")
+option3.click()
+
+time.sleep(5)
+browser.quit()
+
+#работа с get_attribute
+
+import math, time
+from selenium import webdriver
+
+def calc(x):
+    return str(math.log(abs(12*math.sin(int(x)))))
+
+
+link = "http://suninjuly.github.io/get_attribute.html"
+browser = webdriver.Chrome()
+browser.get(link)
+
+x_element = browser.find_element("id","treasure")
+x = x_element.get_attribute("valuex")
+y =calc(x)
+
+element1 = browser.find_element("id","answer")
+element1.send_keys(y)
+
+option1 = browser.find_element("id","robotCheckbox")
+option1.click()
+option2 = browser.find_element("id","robotsRule")
+option2.click()
+option3 = browser.find_element("name","btn")
+option3.click()
+
+time.sleep(5)
+browser.quit()
+
+#выпадающий список
+
+from selenium import webdriver
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
+link = "https://suninjuly.github.io/selects1.html"
+browser = webdriver.Chrome()
+browser.get(link)
+
+num1_element = browser.find_element("id","num1")
+num1 = num1_element.text
+print(num1)
+num2_element = browser.find_element("id","num2")
+num2 = num2_element.text
+print(num2)
+c = int(num1) + int(num2)
+print(c)
+
+select = Select(browser.find_element("id","dropdown"))
+select.select_by_value(str(c))
+
+option1 = browser.find_element(By.CLASS_NAME, "btn").click()
+
+time.sleep(5)
+browser.quit()
